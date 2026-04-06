@@ -9,13 +9,6 @@ This documentation tree is organized by:
 
 - CCSDS track index: [tracks/CCSDS/README.md](./tracks/CCSDS/README.md)
 - LunaNet track index: [tracks/LunaNet/README.md](./tracks/LunaNet/README.md)
-- Old-to-new path map: [Migration-Map.md](./Migration-Map.md)
-
-## Why This Structure
-
-- The old planning pack was based on CCSDS deliverables only; this structure separates assumptions and prevents cross-track confusion.
-- Organizing by source type makes traceability clearer: every planning artifact points back to a specific competition source document.
-- This layout supports parallel work: one subgroup can own deliverables planning while others own interoperability, conformance, and submission packaging.
 
 ## Working Rule
 
