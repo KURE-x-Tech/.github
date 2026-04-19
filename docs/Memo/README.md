@@ -1,7 +1,7 @@
 # Project Memo: LunaNet Signal-In-Space Augmented Forward Signal (LSIS-AFS) Reference Implementation
 
-> [!NOTE] Back to Home
-> [Click Here](../README.md)
+> [!NOTE]
+> [Back to Home](../README.md)
 
 Table of Contents:
 

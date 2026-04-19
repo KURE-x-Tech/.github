@@ -1,7 +1,7 @@
 # Integration Strategy Report: LunaNet LSIS-AFS into Mission Control Architectures
 
-> [!NOTE] Back to Home
-> [Click Here](../README.md)
+> [!NOTE]
+> [Back to Home](../README.md)
 
 Table of Content:
 

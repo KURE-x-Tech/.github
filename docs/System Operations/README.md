@@ -1,7 +1,7 @@
 # The Anatomy of a Space Mission: From Orbit to Earth
 
-> [!NOTE] Back to Home
-> [Click Here](../README.md)
+> [!NOTE]
+> [Back to Home](../README.md)
 
 Table of Contents:
 

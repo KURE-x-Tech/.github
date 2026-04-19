@@ -1,7 +1,7 @@
 # From Bits to Beams: The Journey of a Navigation Signal
 
-> [!NOTE] Back to Home
-> [Click Here](../README.md)
+> [!NOTE]
+> [Back to Home](../README.md)
 
 ## Table of Contents:
 
