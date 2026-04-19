@@ -1,21 +1,19 @@
-# Competition Documentation Hub
+# Project Asteria
 
-This documentation tree is organized by:
+## Project Overview
 
-- Track: CCSDS or LunaNet
-- Source type: deliverables, requirements, spec, interoperability, submission template, and (for LunaNet) spec tables
+Project Asteria is a lunar navigation and communication system that provides Positioning, Navigation, and Timing (PNT) services for lunar assets. It is a software-defined system that can be deployed on different ground station architectures within the European Space Tracking (ESTRACK) network.
 
-## Structure
+> [!NOTE] To Table of Contents
+> [Click Here](./docs/README.md)
 
-- CCSDS track index: [tracks/CCSDS/README.md](../../tracks/CCSDS/README.md)
-- LunaNet track index: [tracks/LunaNet/README.md](../../tracks/LunaNet/README.md)
+## Project Documentation
 
-## Working Rule
+I suggest reading from the memo first to get up to speed with the project.
 
-When editing or extending docs, place updates inside the relevant track and source-type folder so rationale and requirements stay tied to source evidence.
-
-[⬆️ Back to Top ⬆️](#competition-documentation-hub)
-
----
-
-[Next Page](./tracks/CCSDS/README.md)
+- [Memo](./docs/Memo/README.md)
+- [System Operations](./docs/System%20Operations/README.md)
+- [Navigation](./docs/Navigation/README.md)
+- [Signal Processing](./docs/Signal%20Processing/README.md)
+- [Integration Strategy](./docs/Integration%20Strategy/README.md)
+- [Project Asteria](./docs/Project%20Asteria)

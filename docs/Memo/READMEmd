@@ -1,0 +1,121 @@
+# Project Memo: LunaNet Signal-In-Space Augmented Forward Signal (LSIS-AFS) Reference Implementation
+
+> [!NOTE] Back to Home
+> [Click Here](../README.md)
+
+Table of Contents:
+
+- [Project Memo: LunaNet Signal-In-Space Augmented Forward Signal (LSIS-AFS) Reference Implementation](#project-memo-lunanet-signal-in-space-augmented-forward-signal-lsis-afs-reference-implementation)
+     - [Project Foundation and the Strategic Gateway Framework](#project-foundation-and-the-strategic-gateway-framework)
+     - [Phased Implementation Strategy (6-Month Roadmap)](#phased-implementation-strategy-6-month-roadmap)
+          - [Phase 1: Standards Compliance \& Architecture](#phase-1-standards-compliance--architecture)
+          - [Phase 2: Protocol Implementation](#phase-2-protocol-implementation)
+          - [Phase 3: Validation and Interoperability Demonstration](#phase-3-validation-and-interoperability-demonstration)
+     - [](#)
+     - [Detailed Milestone Mapping: Gateways 0-8](#detailed-milestone-mapping-gateways-0-8)
+     - [Comprehensive Deliverables and Validation Framework](#comprehensive-deliverables-and-validation-framework)
+          - [Key Deliverables by Category](#key-deliverables-by-category)
+     - [Competition Scoring and Performance Benchmarking](#competition-scoring-and-performance-benchmarking)
+          - [Scoring Weights \& Evaluation Criteria](#scoring-weights--evaluation-criteria)
+     - [Success Criteria and Concluding Summary](#success-criteria-and-concluding-summary)
+
+## Project Foundation and the Strategic Gateway Framework
+
+The LunaNet Signal-In-Space Augmented Forward Signal (LSIS-AFS) project establishes the technical baseline for a software-based reference implementation of the LunaNet Volume A specification. By prioritizing digital signal processing (DSP), message parsing, and high-fidelity encoding/decoding, this implementation ensures seamless interoperability across the lunar ground and space segments. The operational context for this development is grounded in the European Space Tracking (ESTRACK) network and European Space Operations Centre (ESOC) infrastructure, necessitating a digital baseband logic that accounts for LNSP node ID mapping and PRN codes 1–210.
+
+The implementation strategy employs the "Gateway Principle" as a rigorous risk mitigation framework. This incremental approach decomposes the complex LSIS signal chain into functional building blocks, facilitating early error detection and enabling parallel development of independent modules. For example, the generation of spreading code sequences (Gold, Weil, and Legendre) can be validated independently while the Forward Error Correction (FEC) blocks, including Low-Density Parity-Check (LDPC) and Bose-Chaudhuri-Hocquenghem (BCH) encoders, are developed in tandem. This phased validation reduces integration risk and ensures the final system meets the stringent requirements of the lunar environment.
+
+The following roadmap establishes the strategic progression from architectural design to a fully operational, specification-compliant reference model.
+
+## Phased Implementation Strategy (6-Month Roadmap)
+
+Managing the inherent complexity of lunar navigation, characterized by tiered sequences and multi-rate chip streams, requires a phased approach to ensure every technical requirement is cleared with precision.
+
+### Phase 1: Standards Compliance & Architecture
+
+The initial phase focuses on establishing a robust development environment and a modular structure (codes/, encoding/, messages/, signal/). Effort is prioritized on the core spreading code generators. This includes AFS-I primary Gold codes (2046 chips), AFS-Q primary Weil codes (10230 chips), and AFS-Q tertiary Weil codes (1500 chips). All sequences must match the initialization vectors and insertion indices specified for PRN 1–210.
+
+### Phase 2: Protocol Implementation
+
+The project transitions from architecture to core logic, focusing on Gateways 1 through 6. Key developments include the generation of complex I/Q baseband samples at 1.023 Mchip/s (AFS-I) and 5.115 Mchip/s (AFS-Q) using BPSK mapping. Logic implementation centers on rate 1/2 LDPC and BCH(51,8) encoders, alongside the integration of the CRC-24 generator polynomial (LSIS-FID0-467).
+
+### Phase 3: Validation and Interoperability Demonstration
+
+The final phase targets Gateways 7 and 8, emphasizing system-wide integration and the production of 12-second frames totaling 6000 symbols. This stage involves the 60×98 block interleaver validation, frame synchronization via cross-correlation, and time reconstruction (WN, ITOW, TOI). The roadmap culminates in a demonstration of interoperability with all 12 specified interim test codes and the delivery of comprehensive API documentation.
+
+## ![System Architecture Diagram](./images/Modular-interdependencies.png)
+
+This progression ensures the software moves from individual signal components to a cohesive, competition-ready submission capable of real-time processing.
+
+## Detailed Milestone Mapping: Gateways 0-8
+
+The nine project Gateways serve as the primary progress markers for the review panel, ensuring every functional building block is validated against the LunaNet specifications.
+
+| Gateway # | Milestone Name        | Target Timeline | Core Functional Goal                                                                                       |
+| --------- | --------------------- | --------------- | ---------------------------------------------------------------------------------------------------------- |
+| 0         | Design & Architecture | Month 1         | Establish technology stack, interface definitions, and modular directory structure.                        |
+| 1         | Spreading Code Gen    | Month 2         | Implement Gold (2046 chips), Weil (10230 chips), and Legendre sequences for all 210 PRNs.                  |
+| 2         | FEC Implementation    | Month 3         | Implement rate 1/2 LDPC (Annex 1) and BCH(51,8) to ensure message integrity.                               |
+| 3         | Nav Message Framing   | Month 3         | Pack CED (Clock and Ephemeris Data), Health, and Time fields (WN, ITOW, TOI); implement 60x98 interleaver. |
+| 4         | Baseband Signal Gen   | Month 4         | Generate I/Q samples (1.023/5.115 Mchip/s) with 500 symbols/s rate for AFS-I.                              |
+| 5         | Frame Sync/Decoding   | Month 5         | Implement sync pattern (0xCC63F74536F49E04A) correlation and soft-decision FEC decoding.                   |
+| 6         | Message Parsing       | Month 5         | Extract/validate FID, TOI, and CED fields; reconstruct Time of Transmission (ToT).                         |
+| 7         | Integration           | Month 6         | Demonstrate 100% round-trip data recovery across all 12 interim test codes.                                |
+| 8         | Documentation         | Month 6         | Finalize API documentation and the complete test vector suite for submission.                              |
+
+These milestones facilitate measurable progress and allow for the accrual of partial credit as critical technical objectives are cleared.
+
+## Comprehensive Deliverables and Validation Framework
+
+To clear each Gateway, all deliverables must meet a high "Standard of Quality," defined by strict adherence to the LSIS-AFS Volume A specification and verifiable technical accuracy.
+
+### Key Deliverables by Category
+
+- Spreading Code Module:
+     - Binary and hexadecimal reference codes for Gold (2046 chips) and Weil (10230 chips) sequences.
+     - Validation Criteria: Verification of sequences against Annex 3 reference data and Appendix C/D initialization vectors for PRN 1–210.
+- Encoding & Messaging Module:
+     - LDPC matrices from Annex 1, CRC-24 generators (polynomial LSIS-FID0-467), and secondary code patterns (S0=1110, S1=0111, S2=1011, S3=1101).
+     - Validation Criteria: Successful 60×98 block interleaving validation and LDPC parity bit generation for SB2 (1200 bits) and SB3/4 (870 bits).
+- Signal Generation Module:
+     - I/Q signal files in binary format (int16/float32) and test CSVs.
+     - Validation Criteria: Validation of 12-second composite code sequences with zero chip slips and correct tiered-code alignment (LSIS-170/171).
+- Final Documentation & Test Suite:
+     - Complete API documentation and a full suite of reference test vectors.
+     - Validation Criteria: Successful round-trip "Encode -> Decode" testing with 100% data accuracy and demonstration of interoperability with all 12 interim test codes.
+
+## Competition Scoring and Performance Benchmarking
+
+The evaluation rubric incentives technical accuracy while placing a significant premium on computational efficiency and innovative problem-solving.
+
+### Scoring Weights & Evaluation Criteria
+
+| Category     | Point Allocation & Primary Focus                                                                              |
+| ------------ | ------------------------------------------------------------------------------------------------------------- |
+| Correctness  | 40 Points: Accuracy of codes, FEC, and message parsing against LSIS specifications.                           |
+| Performance  | 20 Points: Computational efficiency, throughput, and real-time capability.                                    |
+| Completeness | 20 Points: Coverage of all 8 primary gateways and all specified message types (CED, Almanac, Network Access). |
+| Code Quality | 10 Points: Organization, modularity, and depth of API documentation.                                          |
+| Innovation   | 10 Points: Advanced SISE visualizations, novel throughput optimizations, or extra features.                   |
+
+Performance Thresholds
+
+High scores in the performance category require the implementation to meet the following operational benchmarks:
+
+- Real-time Processing: 12-second frames must be processed (encoded/decoded) in under 1 second.
+- Signal Integrity: Achieve a Bit Error Rate (BER) < 10^{-5} at Signal-to-Noise Ratio (SNR) > 0 dB.
+- Throughput: Encoding time must remain < 100 ms per frame to ensure headroom for concurrent operations.
+
+The "Innovation and Extras" category serves as the differentiator for top-tier submissions, rewarding the development of advanced monitoring tools or superior algorithmic optimizations.
+
+## Success Criteria and Concluding Summary
+
+The success of the LSIS-AFS implementation is measured by its compliance with mandatory criteria that define a robust reference model. The following checklist summarizes the project's "must-have" requirements:
+
+- Specification Compliance: Full verification of Gold (2046), Weil (10230), and Legendre lengths and parameters against Volume A.
+- Data Recovery: Demonstrated 100% round-trip data recovery (Encoding -> Decoding) under nominal signal conditions.
+- Validation Assets: Generation of a comprehensive test vector suite, including Annex 3 match reports.
+- Operational Interoperability: Demonstrated capability to process all 12 interim test codes (Table 11) with zero errors.
+- Temporal Accuracy: Accurate reconstruction of Week Number (WN), ITOW, and TOI to establish navigation time.
+
+Delivering a high-fidelity reference implementation that provides the necessary software foundation for interoperable lunar communications and navigation. By adhering to this phased roadmap and the Gateway Principle, we ensure a solution ready for the complexities of the ESTRACK and ESOC operational environments.
