@@ -23,14 +23,22 @@ The following technical outputs are required to transition from design to the hi
 
 A modular, document-first approach is mandated for high-assurance aerospace software. This strategy ensures that independent DSP and messaging components can be developed and validated in parallel, minimizing integration errors at the ground station interface.
 
-- System Architecture Document: Detailed mapping of the lsis-afs/ directory tree (including codes/, encoding/, messages/, signal/, and utils/). So What?: Establishing a rigid structure prevents cross-module pollution and ensures that utilities like codes_db are available to both the encoder and decoder pipelines.
-- Technology Stack Selection: Finalized choice of language (C, Rust, Python, Go, or Java) and build system (CMake, Cargo, etc.). So What?: This selection determines the "real-time capability" of the system, mandating that the chosen stack can achieve the 100ms encoding threshold without runtime overhead.
-- Interface Definition Document (IDD): Rigorous specification of module boundaries for codes/, encoding/, and signal/. So What?: By freezing the binary signatures for these modules, DSP engineers and message-parsing teams can develop concurrently without dependency bottlenecks, ensuring the 6-month cycle is met.
-- Testing & Validation Framework: Selection of automated tools (e.g., CTest, pytest) for unit and integration testing. So What?: This framework provides the "fail-fast" mechanism required to validate implementation against Annex 3 reference codes and Legendre sequence lengths.
-- Reference Data Integration Plan: Procedures for the ingestion of Annex 1 (LDPC matrices) and Annex 3 (Reference codes). So What?: Automated parsing of these constants eliminates human error in the mathematical foundations of the signal, ensuring 100% parity with LSIS-AFS Volume A.
-- Development Environment Configuration: Containerized environment specifications (e.g., Docker) to ensure cross-platform parity. So What?: This guarantees that the reference implementation behaves identically across Linux x86_64, macOS ARM64, and Windows, a prerequisite for global LunaNet interoperability.
-- Version Control & CI/CD Strategy: Branching logic and automated pipelines for parallel component development. So What?: Automated validation of every PR against the Requirement Traceability Matrix ensures that new code does not break existing LSIS compliance.
-- Requirement Traceability Matrix: Direct mapping of implementation modules to LSIS IDs (e.g., LSIS-160 for code sync, LSIS-467 for CRC). So What?: This matrix provides the definitive proof of compliance required for software to be certified as a "Reference Implementation" by the Standards Committee.
+- System Architecture Document: Detailed mapping of the lsis-afs/ directory tree (including codes/, encoding/, messages/, signal/, and utils/).
+     - So What?: Establishing a rigid structure prevents cross-module pollution and ensures that utilities like codes_db are available to both the encoder and decoder pipelines.
+- Technology Stack Selection: Finalized choice of language (C, Rust, Python, Go, or Java) and build system (CMake, Cargo, etc.).
+     - So What?: This selection determines the "real-time capability" of the system, mandating that the chosen stack can achieve the 100ms encoding threshold without runtime overhead.
+- Interface Definition Document (IDD): Rigorous specification of module boundaries for codes/, encoding/, and signal/.
+     - So What?: By freezing the binary signatures for these modules, DSP engineers and message-parsing teams can develop concurrently without dependency bottlenecks, ensuring the 6-month cycle is met.
+- Testing & Validation Framework: Selection of automated tools (e.g., CTest, pytest) for unit and integration testing.
+     - So What?: This framework provides the "fail-fast" mechanism required to validate implementation against Annex 3 reference codes and Legendre sequence lengths.
+- Reference Data Integration Plan: Procedures for the ingestion of Annex 1 (LDPC matrices) and Annex 3 (Reference codes).
+     - So What?: Automated parsing of these constants eliminates human error in the mathematical foundations of the signal, ensuring 100% parity with LSIS-AFS Volume A.
+- Development Environment Configuration: Containerized environment specifications (e.g., Docker) to ensure cross-platform parity.
+     - So What?: This guarantees that the reference implementation behaves identically across Linux x86_64, macOS ARM64, and Windows, a prerequisite for global LunaNet interoperability.
+- Version Control & CI/CD Strategy: Branching logic and automated pipelines for parallel component development.
+     - So What?: Automated validation of every PR against the Requirement Traceability Matrix ensures that new code does not break existing LSIS compliance.
+- Requirement Traceability Matrix: Direct mapping of implementation modules to LSIS IDs (e.g., LSIS-160 for code sync, LSIS-467 for CRC).
+     - So What?: This matrix provides the definitive proof of compliance required for software to be certified as a "Reference Implementation" by the Standards Committee.
 
 These deliverables define the technical boundaries that shall govern the software execution life-cycle.
 
@@ -78,15 +86,15 @@ The first 72 hours of execution (Sprint 0) shall focus on the tactical mobilizat
 
 ### Sprint 0 Checklist (Immediate Actions)
 
-1. Repository Initialization: Establish the mandated lsis-afs/ directory structure:
+1. Repository Initialization: Establish the mandated `lsis-afs/` directory structure:
 
-- lsis-afs/codes/ (gold, weil, legendre, tiered)
-- lsis-afs/encoding/ (bch, ldpc, crc, interleaver)
-- lsis-afs/messages/ (sb1, sb2, sb3, sb4, frame)
-- lsis-afs/signal/ (modulator, sync)
-- lsis-afs/utils/ (sise, time, codes_db)
+- `lsis-afs/codes/` (gold, weil, legendre, tiered)
+- `lsis-afs/encoding/` (bch, ldpc, crc, interleaver)
+- `lsis-afs/messages/` (sb1, sb2, sb3, sb4, frame)
+- `lsis-afs/signal/` (modulator, sync)
+- `lsis-afs/utils/` (sise, time, codes_db)
 
-2. Annex Data Ingestion: Develop the codes_db utility to parse Annex 3 reference codes and Annex 1 LDPC submatrices (A, B, C, D, B⁻¹) for SB2 and SB3/4.
+2. Annex Data Ingestion: Develop the `codes_db` utility to parse Annex 3 reference codes and Annex 1 LDPC submatrices (A, B, C, D, B⁻¹) for SB2 and SB3/4.
 3. PRN Mapping Baseline: Implement the master Look-Up Table (LUT) for PRN 1-210.
 
 - AFS-I Primary: Gold codes (2046 chips).

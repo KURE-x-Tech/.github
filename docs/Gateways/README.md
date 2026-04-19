@@ -1,6 +1,6 @@
 # LunaNet Gateways
 
-Listen up. As your Lead Systems Engineer, I need you to understand that the LunaNet Signal-In-Space Augmented Forward Signal (LSIS-AFS) Reference Implementation is not a typical web stack—this is a pure digital signal processing (DSP) pipeline. To build a system that can reliably transmit and receive navigation data from the Moon, we are executing this project using a strict "Gateway-based approach".
+Listen up. As your Lead Systems Engineer, I need you to understand that the LunaNet Signal-In-Space Augmented Forward Signal (LSIS-AFS) Reference Implementation is not a typical web stack, this is a pure digital signal processing (DSP) pipeline. To build a system that can reliably transmit and receive navigation data from the Moon, we are executing this project using a strict "Gateway-based approach".
 
 There are 9 gateways total (numbered 0 through 8), designed to enforce incremental validation so we catch complex DSP errors early. Here is the architectural logic, the pitfalls to watch out for, and the actionable execution plan for each gateway.
 
