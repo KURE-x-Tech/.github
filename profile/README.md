@@ -5,7 +5,7 @@
 Project Asteria is a lunar navigation and communication system that provides Positioning, Navigation, and Timing (PNT) services for lunar assets. It is a software-defined system that can be deployed on different ground station architectures within the European Space Tracking (ESTRACK) network.
 
 > [!NOTE]
-> [Click Here](./docs/README.md)
+> [Click Here](../docs/README.md)
 
 ## Project Documentation
 
