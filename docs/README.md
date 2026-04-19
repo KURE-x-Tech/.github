@@ -4,7 +4,7 @@ Explore the project memo for a comprehensive overview of the project, including 
 
 ## Memo
 
-- Read [Memo](./Memo/READMEmd)
+- Read [Memo](./Memo/README.md)
 
 ## System Operations
 
