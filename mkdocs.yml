@@ -1,0 +1,33 @@
+site_name: KURE x Tech - LunaNet LSIS-AFS Reference Implementation
+repo_url: https://github.com/KURE-x-Tech/.github
+repo_name: KURE-x-Tech/.github
+docs_dir: docs
+
+theme:
+        name: mkdocs
+
+nav:
+        - Home: README.md
+        - Project Overview & Requirements: overview.md
+        - Gateway Roadmap: gateways.md
+        - Developer Guide: developer-guide.md
+        - Compliance & Testing: compliance.md
+        - Concept Guides:
+                  - Anatomy of a Space Mission: concepts/anatomy-of-a-space-mission.md
+        - Memo: Memo/README.md
+        - Navigation: Navigation/README.md
+        - Signal Processing: Signal Processing/README.md
+        - Integration Strategy: Integration Strategy/README.md
+        - System Operations: System Operations/README.md
+        - Project Asteria: Project Asteria/README.md
+        - Legacy Gateways:
+                  - Gateway Index: Gateways/README.md
+                  - Gateway 0: Gateways/0/README.md
+                  - Gateway 1: Gateways/1/README.md
+                  - Gateway 2: Gateways/2/README.md
+                  - Gateway 3: Gateways/3/README.md
+                  - Gateway 4: Gateways/4/README.md
+                  - Gateway 5: Gateways/5/README.md
+                  - Gateway 6: Gateways/6/README.md
+                  - Gateway 7: Gateways/7/README.md
+                  - Gateway 8: Gateways/8/README.md
